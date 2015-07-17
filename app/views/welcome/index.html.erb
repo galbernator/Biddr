@@ -1,0 +1,8 @@
+<h1>Welcome to Biddr</h1>
+<% @auctions.each do |auction| %>
+  <% if auction.aasm_state != "cancelled" %>
+    <div>
+      <%= link_to auction.title, auction_path(auction) %>
+    </div>
+  <% end %>
+<% end %>

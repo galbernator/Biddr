@@ -1,0 +1,24 @@
+<h1><%= @auction.title %></h1>
+<p>
+  <%= @auction.details %>
+</p>
+<p>
+  Current Price : <%= @bids.length == 0 ? "$ 0" : "$ #{(@auction.current_bid.to_i) +1}" %>
+</p>
+<p>
+  Your bid: <%= simple_form_for([@auction, @bid], html: {class: "form-horizontal"}) do |f| %>
+              <%= f.input :amount, placeholder: "Minimum Bid - $#{(@auction.current_bid.to_i)+1}" %>
+              <%= f.submit "PLACE BID" %>
+            <% end %>
+</p>
+<p>
+  <%= @auction.aasm_state.split("_").join(" ").capitalize %>
+</p>
+<hr>
+<p>
+  <% @bids.each do |bid| %>
+    <div>
+      <%= bid.amount %> | <%= bid.user.first_name %>
+    </div>
+  <% end %>
+</p>

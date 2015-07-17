@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Biddr</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= link_to "Home", root_path %>
+  <%= link_to "Sell Something", new_auction_path %>
+  <% if current_user %>
+    Logged in as <%= current_user.first_name %>
+    <%= link_to "My Auctions", user_path(current_user)  %>
+    <%= link_to "Logout", sessions_path, method: :delete %>
+  <% else %>
+    <%= link_to "Log In", new_session_path %>
+    <%= link_to "Sign Up", new_user_path %>
+  <% end %>
+  <hr>
+
+
+<%= yield %>
+
+</body>
+</html>
